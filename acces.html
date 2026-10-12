@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accès & Horaires — CAP SUD Marcory, Abidjan | Bd Valéry Giscard d'Estaing</title>
+<meta name="description" content="Comment venir au CAP SUD : Boulevard Valéry Giscard d'Estaing, Marcory, Abidjan. Horaires d'ouverture, parking, transports en commun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="acces">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Accès</div>
+    <span class="eyebrow" style="color:var(--blue-light);">Nous trouver</span>
+    <h1>Accès & horaires</h1>
+    <p>Boulevard Valéry Giscard d'Estaing, Marcory, Abidjan. Parking gratuit, accessible en voiture ou en transport.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="acces-layout">
+    <div>
+      <div class="map-box reveal">
+        <div class="map-placeholder">
+          <div>
+            <div class="map-pin"><span>📍</span></div>
+            <h3 style="color:var(--navy);">CAP SUD</h3>
+            <p style="color:var(--muted);font-size:14px;margin-top:6px;">Bd Valéry Giscard d'Estaing, Marcory<br>Abidjan, Côte d'Ivoire</p>
+            <a href="https://maps.google.com/?q=Marcory+Abidjan+Boulevard+Valery+Giscard+dEstaing" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:20px;">🗺️ Ouvrir dans Google Maps</a>
+          </div>
+        </div>
+      </div>
+      <div class="transport-list reveal">
+        <div class="row"><span class="ic">🚗</span><div><strong>Voiture</strong><br>Parking gratuit surveillé, 400 places. Accès direct par le Bd VGE.</div></div>
+        <div class="row"><span class="ic">🚌</span><div><strong>Transport en commun</strong><br>Lignes de bus & taxis à proximité, arrêt « Marcory Centre ».</div></div>
+        <div class="row"><span class="ic">♿</span><div><strong>Accessibilité</strong><br>Centre accessible PMR, ascenseurs et places de parking réservées.</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="hours-card reveal">
+        <div class="open-badge" id="openBadge"><span class="pulse"></span> Chargement…</div>
+        <h3 style="color:var(--navy);margin-bottom:16px;">🕐 Horaires d'ouverture</h3>
+        <ul class="hours-list" id="hoursList"></ul>
+      </div>
+      <div class="hours-card reveal" style="margin-top:24px;">
+        <h3 style="color:var(--navy);margin-bottom:12px;">📞 Contact</h3>
+        <p style="font-size:14.5px;color:var(--muted);margin-bottom:8px;">Standard du centre : <strong style="color:var(--blue);">+225 27 21 35 13 35</strong></p>
+        <p style="font-size:14.5px;color:var(--muted);">Instagram : <strong style="color:var(--blue);">@capsud_abidjan</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const list = document.getElementById('hoursList');
+    // Tri : lundi→dimanche
+    const sorted = [...DATA.center.hours].sort((a,b) => (a.day === 0 ? 7 : a.day) - (b.day === 0 ? 7 : b.day));
+    list.innerHTML = sorted.map(h => `<li data-day="${h.day}"><span>${h.label}</span><span>${h.open} – ${h.close}</span></li>`).join('');
+  });
+</script>
+</body>
+</html>

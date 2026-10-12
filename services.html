@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — CAP SUD Marcory | Supermarché, Pressing, Bureau de Change, DAB</title>
+<meta name="description" content="Tous les services de CAP SUD à Marcory, Abidjan : supermarché, pressing, bureau de change, distributeurs automatiques, Wi-Fi gratuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="services">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Services</div>
+    <span class="eyebrow" style="color:var(--blue-light);">Pratique au quotidien</span>
+    <h1>Nos services</h1>
+    <p>Supermarché, pressing, bureau de change, distributeurs automatiques… tout ce dont vous avez besoin au même endroit.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="svc-page-grid" id="svcGrid"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('svcGrid');
+    DATA.services.forEach(s => {
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="svc-page-card reveal">
+          <div class="icon">${s.icon}</div>
+          <h3>${s.label}</h3>
+          <p>${s.desc}</p>
+        </div>`);
+    });
+    const io = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold:0.1 });
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  });
+</script>
+</body>
+</html>

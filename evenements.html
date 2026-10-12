@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Événements & Promos — CAP SUD Marcory, Abidjan</title>
+<meta name="description" content="Événements, animations et promotions à venir au centre commercial CAP SUD à Marcory, Abidjan. Soldes, food festival, soirées cinéma.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Event","name":"Événements CAP SUD","location":{"@type":"Place","name":"CAP SUD","address":{"@type":"PostalAddress","addressLocality":"Abidjan","addressCountry":"CI"}}}
+</script>
+</head>
+<body data-page="evenements">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Événements</div>
+    <span class="eyebrow" style="color:var(--blue-light);">À ne pas manquer</span>
+    <h1>Événements & promos</h1>
+    <p>Soldes, animations, food festival et soirées cinéma : découvrez tout ce qui se passe au CAP SUD.</p>
+  </div>
+</section>
+
+<section class="events-section" style="padding-top:70px;">
+  <div class="container">
+    <div class="event-stack" id="eventStack"></div>
+  </div>
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const es = document.getElementById('eventStack');
+    DATA.events.forEach((e, i) => {
+      es.insertAdjacentHTML('beforeend', `
+        <div class="event-card reveal" style="background:linear-gradient(135deg, ${e.color}, #061a4a); top:${100 + i*30}px;">
+          <span class="tag">${e.tag}</span>
+          <div><h3>${e.title}</h3><p>${e.desc}</p><p style="margin-top:14px;font-weight:600;opacity:.85;">📅 ${e.date}</p></div>
+          <div class="discount">${e.discount}</div>
+        </div>`);
+    });
+    const io = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold:0.1 });
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  });
+</script>
+</body>
+</html>

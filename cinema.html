@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinéma CAP SUD — Films & Horaires à Marcory, Abidjan</title>
+<meta name="description" content="Cinéma à Marcory, Abidjan : films à l'affiche, horaires des séances par jour, 7 salles en 2D et 3D. Réservez votre séance au CAP SUD.">
+<meta name="keywords" content="cinéma Marcory, cinéma Abidjan, séance cinéma Marcory, film à l'affiche Abidjan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="cinema">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Cinéma</div>
+    <span class="eyebrow" style="color:var(--blue-light);">7 salles · 2D & 3D</span>
+    <h1>Cinéma CAP SUD</h1>
+    <p>Les plus grands films à l'affiche, en VOST et VF. Consultez les horaires des séances par jour.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="films-grid" id="filmsGrid"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('filmsGrid');
+    DATA.films.forEach(f => {
+      const todayTimes = f.showtimes['Aujourd\'hui'] || [];
+      grid.insertAdjacentHTML('beforeend', `
+        <div class="film-card reveal">
+          <div class="film-poster" style="background:linear-gradient(160deg, ${f.color}, #061a4a);">
+            <span class="rating">${f.rating}</span>
+            🎬
+          </div>
+          <div class="film-body">
+            <h4>${f.title}</h4>
+            <div class="meta">${f.genre} · ${f.duration}</div>
+            <div class="film-times">${todayTimes.slice(0,4).map(t => `<span>${t}</span>`).join('')}</div>
+          </div>
+        </div>`);
+    });
+    const io = new IntersectionObserver((ents) => ents.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { threshold:0.1 });
+    document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  });
+</script>
+</body>
+</html>

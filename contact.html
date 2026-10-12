@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — CAP SUD Marcory, Abidjan | +225 27 21 35 13 35</title>
+<meta name="description" content="Contactez CAP SUD à Marcory, Abidjan : téléphone +225 27 21 35 13 35, Instagram @capsud_abidjan, formulaire de contact pour vos questions et demandes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Contact</div>
+    <span class="eyebrow" style="color:var(--blue-light);">Une question ?</span>
+    <h1>Contactez-nous</h1>
+    <p>Notre équipe vous répond du lundi au samedi. Pour une urgence, appelez le standard du centre.</p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="contact-layout">
+    <div class="contact-info reveal-left">
+      <div class="item"><span class="ic">📍</span><div><h4>Adresse</h4><p>Boulevard Valéry Giscard d'Estaing<br>Marcory, Abidjan, Côte d'Ivoire</p></div></div>
+      <div class="item"><span class="ic">📞</span><div><h4>Téléphone</h4><p>+225 27 21 35 13 35<br>Standard ouvert 7j/7</p></div></div>
+      <div class="item"><span class="ic">📷</span><div><h4>Réseaux sociaux</h4><p>Instagram : @capsud_abidjan<br>Facebook : CAP SUD (96K followers)</p></div></div>
+      <div class="item"><span class="ic">🕐</span><div><h4>Horaires</h4><p>Lun–Jeu : 09h00 – 21h30<br>Ven–Sam : 09h00 – 22h30 · Dim : 09h00 – 21h00</p></div></div>
+    </div>
+    <form class="contact-form reveal-right" id="contactForm">
+      <h3 style="color:var(--navy);margin-bottom:20px;">Envoyez-nous un message</h3>
+      <div class="form-group"><label>Nom complet</label><input type="text" name="name" required placeholder="Votre nom"></div>
+      <div class="form-group"><label>Email / Téléphone</label><input type="text" name="contact" required placeholder="email@exemple.com ou +225…"></div>
+      <div class="form-group"><label>Sujet</label>
+        <select name="subject">
+          <option>Question générale</option>
+          <option>Devenir enseigne (location boutique)</option>
+          <option>Réclamation</option>
+          <option>Événement / partenariat</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea name="message" required placeholder="Votre message…"></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">✉️ Envoyer le message</button>
+      <p id="formMsg" style="margin-top:14px;font-size:13.5px;color:var(--blue);display:none;">✅ Merci ! Votre message a bien été pris en compte. Nous vous répondrons rapidement.</p>
+    </form>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('formMsg').style.display = 'block';
+    e.target.reset();
+    // NOTE : brancher ici un fetch() vers votre endpoint d'envoi d'email (voir README § Back-office)
+  });
+</script>
+</body>
+</html>

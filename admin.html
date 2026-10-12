@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — CAP SUD (back-office)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="admin" style="background:#f7f9ff;">
+
+<div id="loginView" class="admin-wrap">
+  <div class="container">
+    <div class="login-box">
+      <div style="text-align:center;margin-bottom:20px;"><span class="logo-bag" style="width:56px;height:56px;font-size:28px;margin:0 auto;border-radius:16px;display:grid;place-items:center;">🛍️</span></div>
+      <h2 style="text-align:center;">Espace admin</h2>
+      <p style="text-align:center;">Connectez-vous pour gérer les enseignes, événements et horaires cinéma.</p>
+      <form id="loginForm">
+        <div class="form-group"><label>Identifiant</label><input type="text" id="adminUser" required placeholder="admin"></div>
+        <div class="form-group"><label>Mot de passe</label><input type="password" id="adminPass" required placeholder="••••••••"></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Se connecter</button>
+        <p id="loginErr" style="color:#E02424;font-size:13px;margin-top:12px;display:none;">Identifiants incorrects.</p>
+      </form>
+      <div class="doc-note" style="margin-top:24px;">
+        <strong>Démo :</strong> identifiant <code>admin</code> / mot de passe <code>capsud2026</code>.<br>
+        Les modifications sont sauvegardées dans le navigateur (localStorage). Pour une vraie persistance multi-postes, connectez une base de données — voir le <code>README.md</code> § Back-office.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="adminView" class="admin-wrap" style="display:none;">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:24px;">
+      <h2 style="color:var(--navy);">⚙️ Back-office CAP SUD</h2>
+      <button class="btn btn-ghost" style="background:#EEF3FF;color:var(--navy);" id="logoutBtn">Se déconnecter</button>
+    </div>
+
+    <div class="doc-note">
+      <strong>Documentation — Connecter une base de données :</strong> ce back-office est <em>auth-ready</em>.
+      Pour le brancher à une vraie BDD (Firebase, Supabase, MySQL via API…), remplacez dans <code>js/data.js</code> les méthodes
+      <code>CS_DB.load()</code> et <code>CS_DB.save()</code> par des <code>fetch()</code> vers votre API, et protégez l'auth côté serveur.
+      Voir <code>README.md</code> pour un exemple complet (Supabase).
+    </div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="stores">🏪 Enseignes</button>
+      <button class="admin-tab" data-tab="events">🎉 Événements</button>
+      <button class="admin-tab" data-tab="films">🎬 Cinéma & horaires</button>
+      <button class="admin-tab" data-tab="hours">🕐 Horaires</button>
+    </div>
+
+    <div id="panelStores" class="admin-panel"><h3>🏪 Enseignes (12 exemples — placeholders)</h3><div id="storesRows"></div><button class="btn btn-dark" id="addStore" style="margin-top:14px;">+ Ajouter une boutique</button></div>
+    <div id="panelEvents" class="admin-panel" style="display:none;"><h3>🎉 Événements & promos</h3><div id="eventsRows"></div><button class="btn btn-dark" id="addEvent" style="margin-top:14px;">+ Ajouter un événement</button></div>
+    <div id="panelFilms" class="admin-panel" style="display:none;"><h3>🎬 Films & horaires</h3><div id="filmsRows"></div><button class="btn btn-dark" id="addFilm" style="margin-top:14px;">+ Ajouter un film</button></div>
+    <div id="panelHours" class="admin-panel" style="display:none;"><h3>🕐 Horaires d'ouverture</h3><div id="hoursRows"></div></div>
+
+    <div class="admin-actions">
+      <button class="btn btn-primary" id="saveBtn">💾 Sauvegarder les modifications</button>
+      <button class="btn btn-ghost" style="background:#fff;color:var(--navy);border:1.5px solid #E0E7F5;" id="resetBtn">↺ Réinitialiser (données par défaut)</button>
+    </div>
+  </div>
+</div>
+
+<div class="saved-toast" id="savedToast">✅ Modifications sauvegardées</div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

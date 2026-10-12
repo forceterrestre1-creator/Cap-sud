@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nos Enseignes — CAP SUD Marcory, Abidjan | Mode, Beauté, High-Tech</title>
+<meta name="description" content="Annuaire des boutiques et restaurants de CAP SUD à Marcory, Abidjan : mode, beauté, high-tech, lifestyle, restauration. Recherchez et filtrez par catégorie.">
+<meta name="keywords" content="boutiques Abidjan Marcory, centre commercial enseignes, mode Abidjan">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ShoppingCenter","name":"CAP SUD","telephone":"+225 27 21 35 13 35","address":{"@type":"PostalAddress","streetAddress":"Boulevard Valéry Giscard d'Estaing, Marcory","addressLocality":"Abidjan","addressCountry":"CI"}}
+</script>
+</head>
+<body data-page="enseignes">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Accueil</a> / Enseignes</div>
+    <span class="eyebrow" style="color:var(--blue-light);">Annuaire</span>
+    <h1>Nos enseignes</h1>
+    <p>Mode, beauté, high-tech, lifestyle, restauration et services. Recherchez une boutique par nom ou filtrez par catégorie.</p>
+  </div>
+</section>
+
+<section class="directory">
+  <div class="container">
+    <div class="search-bar">
+      <span style="font-size:20px;">🔍</span>
+      <input type="text" id="searchInput" placeholder="Rechercher une boutique, un service… (ex : mode, café, pressing)">
+      <button class="btn btn-primary" onclick="document.getElementById('searchInput').focus()">Rechercher</button>
+    </div>
+    <div class="cat-chips" id="catChips"></div>
+    <div class="stores-grid" id="storesGrid"></div>
+  </div>
+</section>
+
+<!-- Drawer détail boutique -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose">✕</button>
+  <div id="drawerContent"></div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/enseignes.js"></script>
+</body>
+</html>
